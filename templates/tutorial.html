@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+		<title>GPA Calculator</title>
+		<meta charset="UTF-8">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="author" content="colorlib.com">
+		<link href="https://fonts.googleapis.com/css?family=Poppins:400,800" rel="stylesheet" />
+		<link href="{% static 'css/search.css' %}" rel="stylesheet" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--===============================================================================================-->	
+		<link rel="icon" type="image/png" href="{% static 'images/icons/favicon.ico' %}"/>
+	<!--===============================================================================================-->
+		<link rel="stylesheet" type="text/css" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
+	<!--===============================================================================================-->
+		<link rel="stylesheet" type="text/css" href="{% static 'fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+	<!--===============================================================================================-->
+		<link rel="stylesheet" type="text/css" href="{% static 'vendor/animate/animate.css' %}">
+	<!--===============================================================================================-->
+		<link rel="stylesheet" type="text/css" href="{% static 'vendor/select2/select2.min.css' %}">
+	<!--===============================================================================================-->
+		<link rel="stylesheet" type="text/css" href="{% static 'vendor/perfect-scrollbar/perfect-scrollbar.css' %}">
+	<!--===============================================================================================-->
+		<link rel="stylesheet" type="text/css" href="{% static 'css/util.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+	<!--===============================================================================================-->
+</head>
+
+<body>
+	<div class="s006">
+		<form onsubmit="">
+		  <fieldset>
+			<legend>NTU GPA Calculator</legend>
+			<div class="inner-form">
+			  <div class="input-field">
+				<button class="btn-search" type="button" onclick="">
+				  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+					<path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+				  </svg>
+				</button>
+				<input id="search" type="text" placeholder="輸入你的修課檢視連結"/>
+			  </div>
+			</div>
+		  </fieldset>
+		</form>
+	</div>
+	<!-- Nav -->
+	<nav id="nav">
+		<ul class="links">
+			<li><a href="/index">我的成績 GPA</a></li>
+			<li class="active"><a href="/tutorial">如何使用 Tutorial</a></li>
+			<!--li><a href="elements.html">Elements Reference</a></li-->
+		</ul>
+	</nav>
+	<!--div class="limiter"-->
+		<div class="container-table100">
+			<div class="wrap-table100">
+				<h2>先備條件 Prerequisites</h2>
+				<hr />
+				<h4>1. 有效的 <a target="_blank" rel="noopener noreferrer" href="https://if163.aca.ntu.edu.tw/eportfolio/">NTU e-Portfolio</a> 帳號</h4>
+				<hr />
+				須可以由此進入「修課檢視」系統。請<b>不要</b>從 MyNTU 網站登入修課檢視。
+				<br />
+				<br />
+				<br />
+				<h2>步驟 Steps</h2>
+				<hr />
+				<h4>1. 登入 NTU e-Portfolio 頁面</h4>
+				<hr />
+				登入之後，你應該會看到這個畫面。
+				<br />
+				<br />
+				<img class="readme" src="{% static 'images/readme/pic1.png' %}" alt=""/>
+				<br />
+				<br />
+				點選左側選單的「修課檢視」後，進入這個頁面，然後點選藍色超連結「進入修課檢視系統」。
+				<br />
+				<br />
+				<img class="readme" src="{% static 'images/readme/pic2.png' %}" alt=""/>
+				<br />
+				<br />
+				<h4>2. 修課檢視系統頁面</h4>
+				<hr />
+				進入修課檢視系統頁面後，複製你的網址(用紅色圓圈圈起來的部份)
+				<br />
+				<br />
+				<img class="readme" src="{% static 'images/readme/pic3.png' %}" alt=""/>
+				<br />
+				<br />
+				<h4>3. 前往GPA Calculator首頁</h4>
+				<hr />
+				將剛才複製的網址貼在搜尋欄裡，按下Enter即可送出。稍待片刻便可以看到計算好的各類GPA。
+				<br />
+				<br />
+				<img class="readme" src="{% static 'images/readme/pic4.png' %}" alt=""/>
+				<br />
+				<br />
+				<h4>4. 快速修改你想要納入GPA計算的科目</h4>
+				<hr />
+				原本打勾的科目，代表有納入GPA的計算。
+				<br />
+				<br />
+				<img class="readme" src="{% static 'images/readme/pic5.png' %}" alt=""/>
+				<br />
+				<br />
+				將勾選取消，該科目集會從計算中被移除；若想重新加入，則再次勾選即可。
+				<br />
+				<br />
+				<img class="readme" src="{% static 'images/readme/pic6.png' %}" alt=""/>
+				<br />
+				<br />
+				<br />
+				<h2>隱私權與安全性 Privacy and Security </h2>
+				<hr />
+				這個網站不會儲存任何使用者相關的資訊，包含來源IP與「修課檢視」系統連結及學號。
+				原始碼公開於<a target="_blank" rel="noopener noreferrer" href="https://github.com/cplalexandtang/ntu-gpacalculator">這裡</a>。
+				如果仍有隱私疑慮，歡迎直接Clone這個專案在你的本機上執行GPA Calculator網站。
+				<br />
+				<br />
+			<!--/div-->
+
+			<!-- Footer -->
+			
+			<footer id="footer">
+				<section class="split contact">
+					<section>
+						<h3>聯絡我們 Email : </h3>
+						<p><a href="mailto:boominglab@gmail.com">boominglab@gmail.com</a></p>
+					</section>
+					<section>
+						<h3>粉絲專頁 Social : </h3>
+						<ul class="icons alt">
+							<li><a href="/"><span>Facebook</span></a></a></li>
+						</ul>
+					</section>
+					<section>
+						<h3>GitHub首頁 Repo : </h3>
+						<p><a href="https://github.com/cplalexandtang/ntu-gpacalculator">https://github.com/cplalexandtang/ntu-gpacalculator</a></p>
+					</section-->
+				</section>
+			</footer>
+			<br />
+		</div>
+	</div>
+
+	<!-- Copyright -->
+	<div id="copyright">
+		<ul><li>&copy; ATStudio ft. BoomingLAB</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+	</div>
+
+
+<!--===============================================================================================-->	
+	<script src="{% static 'vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/bootstrap/js/popper.js' %}"></script>
+	<script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/select2/select2.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/perfect-scrollbar/perfect-scrollbar.min.js' %}"></script>
+	<script>
+		$('.js-pscroll').each(function(){
+			var ps = new PerfectScrollbar(this);
+
+			$(window).on('resize', function(){
+				ps.update();
+			})
+		});
+			
+		
+	</script>
+<!--===============================================================================================-->
+	<script src="{% static 'js/main.js' %}"></script>
+
+</body>
+</html>

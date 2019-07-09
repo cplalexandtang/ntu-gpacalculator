@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+<html lang="en">
+
+<!-- Headers -->
+<head>
+	<title>GPA Calculator</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="author" content="colorlib.com">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,800" rel="stylesheet" />
+    <link href="{% static 'css/search.css' %}" rel="stylesheet" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="{% static 'images/icons/favicon.ico' %}"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/animate/animate.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/select2/select2.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/perfect-scrollbar/perfect-scrollbar.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'css/util.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+<!--===============================================================================================-->
+</head>
+
+<!-- Body -->
+<body>
+	<!-- Loader -->
+	<div id="loader"></div>
+	
+	<div class="limiter">
+
+		<!-- Fancy Search Bar -->
+		<div class="s006">
+			<form>
+			<fieldset>
+				<legend>NTU GPA Calculator</legend>
+				<div class="inner-form">
+				<div class="input-field">
+					<button class="btn-search" type="submit">
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+						<path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+					</svg>
+					</button>
+					<input id="search" type="text" placeholder="輸入你的修課檢視連結" value=""/>
+				</div>
+				</div>
+			</fieldset>
+			</form>
+		</div>
+	
+		<!-- Nav -->
+		<nav id="nav">
+			<ul class="links">
+				<li class="active"><a href="/index">我的成績 GPA</a></li>
+				<li><a href="/tutorial">如何使用 Tutorial</a></li>
+				<!--li><a href="elements.html">Elements Reference</a></li-->
+			</ul>
+		</nav>
+	
+		<!-- Fancy Table -->
+		<div class="container-table100">
+			<div class="wrap-table100">
+				<br /><br />
+				<h2>所有科目(All Subjects)</h2>
+				<hr />
+				<div class="table100 ver1 m-b-50">
+					<div class="table100-head">
+						<table>
+							<thead>
+								<tr class="row100 head">
+									<th class="cell100 column0">選擇</th>
+									<th class="cell100 column1">課別</th>
+									<th class="cell100 column2">學年 / 學期</th>
+									<th class="cell100 column3">科目名稱</th>
+									<th class="cell100 column4">課號</th>
+									<th class="cell100 column5">課程識別碼</th>
+									<th class="cell100 column6">班次</th>
+									<th class="cell100 column7">學分</th>
+									<th class="cell100 column8">成績</th>
+									<th class="cell100 column9">GPA</th>
+									<th class="cell100 column10">備註</th>
+								</tr>
+							</thead>
+						</table>
+					</div>
+					<div class="table100-body js-pscroll" id="all">
+						<table>
+							<tbody>
+								<!--tr class="row100 body">
+									<td class="cell100 column0"><input type="checkbox" /></td>
+									<td class="cell100 column1">Like a butterfly</td>
+									<td class="cell100 column2">Boxing</td>
+									<td class="cell100 column3">9:00 AM - 11:00 AM</td>
+									<td class="cell100 column4">Aaron Chapman</td>
+									<td class="cell100 column5">10</td>
+								</tr-->
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<h2 class="all credits">Credits:</h2>
+				<br />
+				<h2 class="all gpa">Cumulative GPA:</h2>
+					
+				<hr />
+				<h2>主修科目(Major)</h2>
+				<hr />
+					
+				<div class="table100 ver2 m-b-50">
+					<div class="table100-head">
+						<table>
+							<thead>
+								<tr class="row100 head">
+									<th class="cell100 column0">選擇</th>
+									<th class="cell100 column1">課別</th>
+									<th class="cell100 column2">學年 / 學期</th>
+									<th class="cell100 column3">科目名稱</th>
+									<th class="cell100 column4">課號</th>
+									<th class="cell100 column5">課程識別碼</th>
+									<th class="cell100 column6">班次</th>
+									<th class="cell100 column7">學分</th>
+									<th class="cell100 column8">成績</th>
+									<th class="cell100 column9">GPA</th>
+									<th class="cell100 column10">備註</th>
+								</tr>
+							</thead>
+						</table>
+					</div>
+					<div class="table100-body js-pscroll" id = "major">
+						<table>
+							<tbody>
+								<!--tr class="row100 body">
+									<td class="cell100 column0"><input type="checkbox" /></td>
+									<td class="cell100 column1">Like a butterfly</td>
+									<td class="cell100 column2">Boxing</td>
+									<td class="cell100 column3">9:00 AM - 11:00 AM</td>
+									<td class="cell100 column4">Aaron Chapman</td>
+									<td class="cell100 column5">10</td>
+								</tr-->
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<h2 class="major credits">Credits:</h2>
+				<br />
+				<h2 class="major gpa">Major GPA:</h2>
+
+				<hr />
+				<h2>最後60學分(Last 60)</h2>
+				<hr />
+
+				<div class="table100 ver3 m-b-50">
+					<div class="table100-head">
+						<table>
+							<thead>
+								<tr class="row100 head">
+									<th class="cell100 column0">選擇</th>
+									<th class="cell100 column1">課別</th>
+									<th class="cell100 column2">學年 / 學期</th>
+									<th class="cell100 column3">科目名稱</th>
+									<th class="cell100 column4">課號</th>
+									<th class="cell100 column5">課程識別碼</th>
+									<th class="cell100 column6">班次</th>
+									<th class="cell100 column7">學分</th>
+									<th class="cell100 column8">成績</th>
+									<th class="cell100 column9">GPA</th>
+									<th class="cell100 column10">備註</th>
+								</tr>
+							</thead>
+						</table>
+					</div>
+					<div class="table100-body js-pscroll", id = "last60">
+						<table>
+							<tbody>
+								<!--tr class="row100 body">
+									<td class="cell100 column0"><input type="checkbox" /></td>
+									<td class="cell100 column1">Like a butterfly</td>
+									<td class="cell100 column2">Boxing</td>
+									<td class="cell100 column3">9:00 AM - 11:00 AM</td>
+									<td class="cell100 column4">Aaron Chapman</td>
+									<td class="cell100 column5">10</td>
+								</tr-->
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<h2 class="last60 credits">Credits:</h2>
+				<br />
+				<h2 class="last60 gpa">Last 60 GPA:</h2>
+				<br />
+				<br />
+
+				<footer id="footer">
+					<!--section>
+						<form method="post" action="#">
+							<div class="fields">
+								<div class="field">
+									<label for="name">Name</label>
+									<input type="text" name="name" id="name" />
+								</div>
+								<div class="field">
+									<label for="email">Email</label>
+									<input type="text" name="email" id="email" />
+								</div>
+								<div class="field">
+									<label for="message">Message</label>
+									<textarea name="message" id="message" rows="3"></textarea>
+								</div>
+							</div>
+							<ul class="actions">
+								<li><input type="submit" value="Send Message" /></li>
+							</ul>
+						</form>
+					</section-->
+					<section class="split contact">
+						<!--section class="alt">
+							<h3>Address</h3>
+							<p>1234 Somewhere Road #87257<br />
+							Nashville, TN 00000-0000</p>
+						</section>
+						<section>
+							<h3>Phone</h3>
+							<p><a href="#">(000) 000-0000</a></p>
+						</section-->
+						<section>
+							<h3>聯絡我們 Email : </h3>
+							<p><a href="mailto:boominglab@gmail.com">boominglab@gmail.com</a></p>
+						</section>
+						<section>
+							<h3>粉絲專頁 Social : </h3>
+							<ul class="icons alt">
+								<li><a href="/"><span>Facebook</span></a></a></li>
+							</ul>
+						</section>
+						<section>
+							<h3>GitHub首頁 Repo : </h3>
+							<p><a href="https://github.com/cplalexandtang/ntu-gpacalculator">https://github.com/cplalexandtang/ntu-gpacalculator</a></p>
+						</section-->
+					</section>
+				</footer>
+				<br />
+
+			</div>
+
+			<!-- Footer -->
+				
+		
+		
+		</div>
+	
+	</div>
+
+	<!-- Copyright -->
+	<div id="copyright">
+		<ul><li>&copy; ATStudio ft. BoomingLAB</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+	</div>
+
+
+<!--===============================================================================================-->	
+	<script src="{% static 'vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/bootstrap/js/popper.js' %}"></script>
+	<script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/select2/select2.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/perfect-scrollbar/perfect-scrollbar.min.js' %}"></script>
+	<script>
+		$('.js-pscroll').each(function(){
+			var ps = new PerfectScrollbar(this);
+
+			$(window).on('resize', function(){
+				ps.update();
+			})
+		});
+	</script>
+<!--===============================================================================================-->
+	<script src="{% static 'js/main.js' %}"></script>
+
+</body>
+</html>
