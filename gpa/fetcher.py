@@ -22,6 +22,16 @@ mapLetter2Gpa = {
 	"X" : 0,
 }
 
+def myInt(string):
+	try:
+		num = int(string)
+	except:
+		if "1" in string:
+			num = 3
+		else:
+			num = 4
+	return num
+
 def getGrades(url):
 	try: html_doc = requests.get(url).text.encode('latin-1').decode('big5')
 	except: return {"status" : "Error"}
@@ -55,7 +65,7 @@ def getGrades(url):
 		gpa += (mapLetter2Gpa.get(grade.get("Grade")) * float(grade.get("Credit")))
 		credit += float(grade.get("Credit"))
 	gpa = float("{0:.2f}".format(gpa/credit))
-	grades.sort(key= lambda ele:( int(ele.get("Year").split('/')[0]), int(ele.get("Year").split('/')[1]) ,mapLetter2Gpa.get(ele.get("Grade"))))
+	grades.sort(key= lambda ele:( myInt(ele.get("Year").split('/')[0]), myInt(ele.get("Year").split('/')[1]) ,mapLetter2Gpa.get(ele.get("Grade"))))
 	
 	last60Credit = 0
 	for grade in reversed(grades):
