@@ -53,6 +53,9 @@ def getGrades(url):
 		for idx, t in enumerate(_soup.find_all("td")):
 			if idx < (len(keys)-1):
 				#print(keys[idx], str(t.string).strip())
+				if len(t.find_all("font")) > 0:
+					grade.update({keys[idx] : 'F'})
+					continue
 				grade.update({keys[idx] : str(t.string).strip()})
 		
 		grade.update({"Score" : mapLetter2Gpa.get(grade.get("Grade"))})
