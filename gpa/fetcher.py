@@ -6,7 +6,7 @@ keys = [
 	"Group", "Year", "Course", "ClassNum", "ID", "Class", "Credit", "Grade", "Memo", "Last60",
 ]
 letters = [
-	"A+", "A", "A-", "B+", "B", "B-", "C+", "C", "C-", "F", "X"
+	"A+", "A", "A-", "B+", "B", "B-", "C+", "C", "C-", "F", "X", "(F )"
 ]
 mapLetter2Gpa = {
 	"A+" : 4.3,
@@ -20,6 +20,7 @@ mapLetter2Gpa = {
 	"C-" : 1.7,
 	"F" : 0,
 	"X" : 0,
+	"(F )": 0,
 }
 
 def myInt(string):
@@ -51,13 +52,12 @@ def getGrades(url):
 			major = int(major_info[9])
 
 		for idx, t in enumerate(_soup.find_all("td")):
-			if idx < (len(keys)-1):
-				#print(keys[idx], str(t.string).strip())
-				grade.update({keys[idx] : str(t.string).strip()})
+			if idx < (len(keys)-1):	grade.update({keys[idx] : str(t.text).strip()})
 		
 		grade.update({"Score" : mapLetter2Gpa.get(grade.get("Grade"))})
 		grade.update({"Last60" : False}) # initialize
-		if grade.get("Grade") in letters : grades.append(grade)
+		if grade.get("Grade") in letters :
+			grades.append(grade)
 
 	gpa = 0
 	credit = 0
@@ -74,7 +74,6 @@ def getGrades(url):
 			break
 		grade.update({"Last60" : True})
 		last60Credit += int(grade.get("Credit"))
-
 	return {
 		"status" : "OK",
 		"grades" : grades,
