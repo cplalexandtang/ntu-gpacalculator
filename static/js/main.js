@@ -46,11 +46,14 @@
 		var major = data.major.toString().substring(0,3)
 		var major_total_gpa = 0
 		var major_credit = 0
+		let major_failure_credit = 0
 		$("div#major table tbody tr").remove()
 		for (var _i = 0; _i < data.grades.length; _i++) {
 			if (data.grades[_i].ID.search(major) == 0) {
 				major_credit += Number(data.grades[_i].Credit)
 				major_total_gpa += data.grades[_i].Score * 10 * Number(data.grades[_i].Credit) // because of precision, I need to multiply it by 10 times
+				if (data.grades[_i].Score === 0){
+					major_failure_credit += data.grades[_i].Credit}
 				$("div#major table tbody").append(
 					'<tr class="row100 body major">'
 					+'<td class="cell100 column0"><input type="checkbox" checked="true"/></td>'
@@ -90,6 +93,7 @@
 		var last60_credit = 0
 		for (var _i = 0; _i < data.grades.length; _i++) {
 			if (data.grades[_i].Last60) {
+				console.log(data.grades[_i])
 				last60_credit += Number(data.grades[_i].Credit)
 				last60_total_gpa += data.grades[_i].Score * 10 * Number(data.grades[_i].Credit) // because of precision, I need to multiply it by 10 times
 				$("div#last60 table tbody").append(
@@ -126,16 +130,41 @@
 			}
 	
 		}
+
+		$("div#others table tbody tr").remove()
+		var others_total_gpa = 0
+		var others_credit = 0
+		for (var _i = 0; _i < data.noGPAs.length; _i++) {
+			others_credit += Number(data.noGPAs[_i].Credit)
+				
+			$("div#others table tbody").append(
+				'<tr class="row100 body">'
+				+'<td class="cell100 column0"><input type="checkbox" checked="true"/></td>'
+				+'<td class="cell100 column1">' + data.noGPAs[_i].Group + '</td>'
+				+'<td class="cell100 column2">' + data.noGPAs[_i].Year + '</td>'
+				+'<td class="cell100 column3">' + data.noGPAs[_i].Course + '</td>'
+				+'<td class="cell100 column4">' + data.noGPAs[_i].ClassNum + '</td>'
+				+'<td class="cell100 column5">' + data.noGPAs[_i].ID + '</td>'
+				+'<td class="cell100 column6">' + data.noGPAs[_i].Class + '</td>'
+				+'<td class="cell100 column7">' + data.noGPAs[_i].Credit + '</td>'
+				+'<td class="cell100 column8">' + data.noGPAs[_i].Grade + '</td>'
+				+'<td class="cell100 column9">' + data.noGPAs[_i].Score + '</td>'
+				+'<td class="cell100 column10">' + data.noGPAs[_i].Memo + '</td>'
+				+'</tr>'
+			)
+		}
 		//console.log(data)
 		if ($('h2.all.credits').text().split(":")[1] === "") $('h2.all.credits').append(' ' + data.credit.toString());
 		if ($('h2.all.gpa').text().split(":")[1] === "") $('h2.all.gpa').append(' ' + data.gpa.toString());
 		// major 
-		if ($('h2.major.credits').text().split(":")[1] === "") $('h2.major.credits').append(' ' + major_credit.toString());
+		if ($('h2.major.credits').text().split(":")[1] === "") $('h2.major.credits').append(' ' + (major_credit-major_failure_credit).toString());
 		if ($('h2.major.gpa').text().split(":")[1] === "") $('h2.major.gpa').append(' ' + ((major_total_gpa / major_credit ) / 10).toPrecision(3).toString());
 		// last60
 		if ($('h2.last60.credits').text().split(":")[1] === "") $('h2.last60.credits').append(' ' + last60_credit.toString());
 		if ($('h2.last60.gpa').text().split(":")[1] === "") $('h2.last60.gpa').append(' ' + ((last60_total_gpa / last60_credit ) / 10).toPrecision(3).toString());
-	
+		//others
+		if ($('h2.others.credits').text().split(":")[1] === "") $('h2.others.credits').append(' ' + others_credit.toString());
+		
 		if (ajax) {
 			$('#loader').toggle();
 			$('.limiter').css("filter", "blur(0px)");
@@ -211,6 +240,9 @@
 		} else if ($(t).attr("class").includes("last60")) { // TODO : Determine className of Last 60 GPA Section
 			section = "last60" 
 			type = "Last 60"
+		}else if ($(t).attr("class").includes("last60")) {
+			section = "others" 
+			type = "others"
 		}
 
 		const onoff = $(t).find(":checkbox")[0].checked;
