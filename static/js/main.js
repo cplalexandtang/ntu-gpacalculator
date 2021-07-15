@@ -28,7 +28,7 @@
 		for (var _i = 0; _i < data.grades.length; _i++) {
 			$("div#all table tbody").append(
 				'<tr class="row100 body">'
-				+'<td class="cell100 column0"><input type="checkbox" checked="true"/></td>'
+				+'<td class="cell100 column0"><input type="checkbox" checked="true" disabled/></td>'
 				+'<td class="cell100 column1">' + data.grades[_i].Group + '</td>'
 				+'<td class="cell100 column2">' + data.grades[_i].Year + '</td>'
 				+'<td class="cell100 column3">' + data.grades[_i].Course + '</td>'
@@ -56,7 +56,7 @@
 					major_failure_credit += data.grades[_i].Credit}
 				$("div#major table tbody").append(
 					'<tr class="row100 body major">'
-					+'<td class="cell100 column0"><input type="checkbox" checked="true"/></td>'
+					+'<td class="cell100 column0"><input type="checkbox" checked="true" disabled/></td>'
 					+'<td class="cell100 column1">' + data.grades[_i].Group + '</td>'
 					+'<td class="cell100 column2">' + data.grades[_i].Year + '</td>'
 					+'<td class="cell100 column3">' + data.grades[_i].Course + '</td>'
@@ -72,7 +72,7 @@
 			} else{
 				$("div#major table tbody").append(
 					'<tr class="row100 body major">'
-					+'<td class="cell100 column0"><input type="checkbox"/></td>'
+					+'<td class="cell100 column0"><input type="checkbox" disabled/></td>'
 					+'<td class="cell100 column1">' + data.grades[_i].Group + '</td>'
 					+'<td class="cell100 column2">' + data.grades[_i].Year + '</td>'
 					+'<td class="cell100 column3">' + data.grades[_i].Course + '</td>'
@@ -98,7 +98,7 @@
 				last60_total_gpa += data.grades[_i].Score * 10 * Number(data.grades[_i].Credit) // because of precision, I need to multiply it by 10 times
 				$("div#last60 table tbody").append(
 					'<tr class="row100 body last60">'
-					+'<td class="cell100 column0"><input type="checkbox" checked="true"/></td>'
+					+'<td class="cell100 column0"><input type="checkbox" checked="true" disabled/></td>'
 					+'<td class="cell100 column1">' + data.grades[_i].Group + '</td>'
 					+'<td class="cell100 column2">' + data.grades[_i].Year + '</td>'
 					+'<td class="cell100 column3">' + data.grades[_i].Course + '</td>'
@@ -114,7 +114,7 @@
 			} else {
 				$("div#last60 table tbody").append(
 					'<tr class="row100 body last60">'
-					+'<td class="cell100 column0"><input type="checkbox"/></td>'
+					+'<td class="cell100 column0"><input type="checkbox" disabled/></td>'
 					+'<td class="cell100 column1">' + data.grades[_i].Group + '</td>'
 					+'<td class="cell100 column2">' + data.grades[_i].Year + '</td>'
 					+'<td class="cell100 column3">' + data.grades[_i].Course + '</td>'
@@ -139,7 +139,7 @@
 				
 			$("div#others table tbody").append(
 				'<tr class="row100 body">'
-				+'<td class="cell100 column0"><input type="checkbox" checked="true"/></td>'
+				+'<td class="cell100 column0"><input type="checkbox" checked="true" disabled/></td>'
 				+'<td class="cell100 column1">' + data.noGPAs[_i].Group + '</td>'
 				+'<td class="cell100 column2">' + data.noGPAs[_i].Year + '</td>'
 				+'<td class="cell100 column3">' + data.noGPAs[_i].Course + '</td>'
