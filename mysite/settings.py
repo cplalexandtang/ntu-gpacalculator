@@ -24,7 +24,10 @@ SECRET_KEY = '9487q$%h_huwc86_8@jp-7)9adz&)en!9)=b58d1nn=k3@e&%$'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'https://ntu-gpu-calculator.herokuapp.com/',
+    'ntu-gpu-calculator.herokuapp.com/'
+]
 
 
 # Application definition
