@@ -26,7 +26,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'https://ntu-gpu-calculator.herokuapp.com/',
-    'ntu-gpu-calculator.herokuapp.com/'
+    'ntu-gpu-calculator.herokuapp.com/',
+    'ntu-gpu-calculator.herokuapp.com'
 ]
 
 
