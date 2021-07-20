@@ -157,7 +157,12 @@
 		if ($('h2.all.credits').text().split(":")[1] === "") $('h2.all.credits').append(' ' + data.credit.toString());
 		if ($('h2.all.gpa').text().split(":")[1] === "") $('h2.all.gpa').append(' ' + data.gpa.toString());
 		// major 
-		if ($('h2.major.credits').text().split(":")[1] === "") $('h2.major.credits').append(' ' + (major_credit-major_failure_credit).toString());
+		if ($('h2.major.credits').text().split(":")[1] === ""){
+			if (major_credit == 0){
+				$('h2.major.credits').append('特定科系客係代碼特別還在開發中')
+			}else{
+		 $('h2.major.credits').append(' ' + (major_credit-major_failure_credit).toString());
+		}}
 		if ($('h2.major.gpa').text().split(":")[1] === "") $('h2.major.gpa').append(' ' + ((major_total_gpa / major_credit ) / 10).toPrecision(3).toString());
 		// last60
 		if ($('h2.last60.credits').text().split(":")[1] === "") $('h2.last60.credits').append(' ' + last60_credit.toString());

@@ -52,8 +52,10 @@ def getGrades(url):
 		if str(r).find('學院 / 系組') != -1:
 			major_info = str(_soup.find_all("td")[0]).split()
 			collegeName, departmentName = major_info[7], major_info[10]
-			major = int(major_info[9])
-
+			try:
+				major = int(major_info[9])
+			except:
+				major = -1
 		for idx, t in enumerate(_soup.find_all("td")):
 			if idx < (len(keys)-1):
 				#print(keys[idx], str(t.string).strip())
