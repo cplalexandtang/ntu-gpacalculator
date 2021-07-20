@@ -159,7 +159,7 @@
 		// major 
 		if ($('h2.major.credits').text().split(":")[1] === ""){
 			if (major_credit == 0){
-				$('h2.major.credits').append('特定科系客係代碼特別還在開發中')
+				$('h2.major.credits').append('特定科系代碼特別，還在開發中')
 			}else{
 		 $('h2.major.credits').append(' ' + (major_credit-major_failure_credit).toString());
 		}}
