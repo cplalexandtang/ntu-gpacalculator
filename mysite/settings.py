@@ -24,7 +24,10 @@ SECRET_KEY = '9487q$%h_huwc86_8@jp-7)9adz&)en!9)=b58d1nn=k3@e&%$'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'ntu-gpa-calculator.herokuapp.com',
+    '127.0.0.1'
+]
 
 
 # Application definition
@@ -116,7 +119,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [

@@ -22,6 +22,7 @@ This is an open source project for calculating NTU (National Taiwan University) 
 
 + [Alex Tang](https://github.com/cplalexandtang) (NTUEE B04)
 + [Kevin Chen](https://github.com/kevin85421) (NTUEE B03)
++ [Wen Kuo](https://github.com/Taxod)
 
 If you are not a NTU student but want to develop a similar website for your own school as well, feel free to fork this project. If you would like to contribute to our project, PR are welcome.
 

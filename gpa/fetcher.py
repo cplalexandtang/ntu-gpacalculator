@@ -6,7 +6,7 @@ keys = [
 	"Group", "Year", "Course", "ClassNum", "ID", "Class", "Credit", "Grade", "Memo", "Last60",
 ]
 letters = [
-	"A+", "A", "A-", "B+", "B", "B-", "C+", "C", "C-", "F", "X"
+	"A+", "A", "A-", "B+", "B", "B-", "C+", "C", "C-", "F", "X", "(F )"
 ]
 mapLetter2Gpa = {
 	"A+" : 4.3,
@@ -20,7 +20,10 @@ mapLetter2Gpa = {
 	"C-" : 1.7,
 	"F" : 0,
 	"X" : 0,
+	"(F )": 0,
 }
+
+noGPALetter = ["通過", "採計", "不通過"]
 
 def myInt(string):
 	try:
@@ -39,6 +42,7 @@ def getGrades(url):
 	soup = BeautifulSoup(html_doc, 'html.parser')
 	res = soup.find_all("tr")
 	grades = list()
+	noGPAs = list()
 	major = 0
 	name = str()
 	for r in res:
@@ -48,25 +52,33 @@ def getGrades(url):
 		if str(r).find('學院 / 系組') != -1:
 			major_info = str(_soup.find_all("td")[0]).split()
 			collegeName, departmentName = major_info[7], major_info[10]
-			major = int(major_info[9])
-
+			try:
+				major = int(major_info[9])
+			except:
+				major = -1
 		for idx, t in enumerate(_soup.find_all("td")):
 			if idx < (len(keys)-1):
 				#print(keys[idx], str(t.string).strip())
-				grade.update({keys[idx] : str(t.string).strip()})
+				grade.update({keys[idx] : str(t.text).strip()})
 		
 		grade.update({"Score" : mapLetter2Gpa.get(grade.get("Grade"))})
 		grade.update({"Last60" : False}) # initialize
 		if grade.get("Grade") in letters : grades.append(grade)
+		if grade.get("Grade") in noGPALetter : noGPAs.append(grade)
+		# print(noGPAs)
 
 	gpa = 0
 	credit = 0
+	failureCredit = 0
 	for grade in grades:
 		gpa += (mapLetter2Gpa.get(grade.get("Grade")) * float(grade.get("Credit")))
 		credit += float(grade.get("Credit"))
+		if grade.get("Grade") == "(F )": 
+			failureCredit += float(grade.get("Credit"))
 	gpa = float("{0:.2f}".format(gpa/credit))
 	grades.sort(key= lambda ele:( myInt(ele.get("Year").split('/')[0]), myInt(ele.get("Year").split('/')[1]) ,mapLetter2Gpa.get(ele.get("Grade"))))
-	
+	credit -= failureCredit
+
 	last60Credit = 0
 	for grade in reversed(grades):
 		if last60Credit >= 60 - int(grade.get("Credit")):
@@ -80,5 +92,6 @@ def getGrades(url):
 		"grades" : grades,
 		"credit" : credit,
 		"gpa" : gpa,
-		"major" : major
+		"major" : major,
+		"noGPAs": noGPAs,
 	}
